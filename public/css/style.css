@@ -1,0 +1,194 @@
+:root {
+    --black-coral: #495867ff;
+    --blue-yonder: #577399ff;
+    --beau-blue: #bdd5eaff;
+    --ghost-white: #f7f7ffff;
+    --orange-red-crayola: #fe5f55ff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    /* background-image: linear-gradient(
+        135deg,
+        var(--black-coral),
+        var(--blue-yonder)
+    ); */
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='40' height='40' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='rgba(51, 61, 71,1)'/%3E%3Ccircle cx='40' cy='20' r='1' fill='rgba(71, 93, 123,1)'/%3E%3Ccircle cx='0' cy='20' r='1' fill='rgba(71, 93, 123,1)'/%3E%3Ccircle cx='20' cy='40' r='1' fill='rgba(71, 93, 123,1)'/%3E%3Ccircle cx='20' cy='0' r='1' fill='rgba(71, 93, 123,1)'/%3E%3Ccircle cx='38' cy='2' r='1' fill='rgba(193, 14, 1,1)'/%3E%3Ccircle cx='2' cy='38' r='1' fill='rgba(193, 14, 1,1)'/%3E%3Ccircle cx='38' cy='38' r='1' fill='rgba(193, 14, 1,1)'/%3E%3Ccircle cx='2' cy='2' r='1' fill='rgba(193, 14, 1,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
+    min-height: 100vh;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 3em;
+    margin-block: 1em;
+    display: inline-block;
+    color: var(--ghost-white);
+    letter-spacing: 5px;
+}
+
+.narrow {
+    display: none;
+}
+
+h1 span {
+    color: var(--orange-red-crayola);
+    font-weight: 100;
+}
+
+h2 {
+    font-size: 2em;
+    font-weight: 100;
+    max-width: 1000px;
+    color: var(--beau-blue);
+    line-height: 1.3em;
+}
+
+button.folder {
+    font-size: 3em;
+    background-color: transparent;
+    border: none;
+    margin-left: 30px;
+    color: var(--blue-yonder);
+    cursor: pointer;
+}
+
+#upload {
+    position: fixed;
+    top: 100px;
+    left: 20%;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: var(--ghost-white);
+    padding: 2em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 1),
+        0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+form p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+
+form input {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    border: 1px solid var(--black-coral);
+}
+
+#content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 2em;
+    flex-wrap: wrap;
+    margin-block: 3em;
+}
+
+form button {
+    align-self: center;
+    padding: 0.5em 1em;
+    background-color: var(--black-coral);
+    color: var(--ghost-white);
+    border: none;
+    font-weight: 700;
+    font-size: 1.3em;
+    border-radius: 5px;
+    border: 1px solid var(--black-coral);
+}
+
+form button:hover {
+    background-color: var(--ghost-white);
+    color: var(--black-coral);
+    border: 1px solid var(--black-coral);
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+}
+.card {
+    /* width: 30%;
+    max-width: 500px;
+    min-width: 300px; */
+    background-color: var(--black-coral);
+    border: 2px solid var(--blue-yonder);
+    border-radius: 5px;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.card div {
+    padding: 1.3em;
+}
+
+.card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--beau-blue);
+    display: flex;
+    align-items: flex-end;
+}
+
+.card h3 span.material-icons {
+    color: var(--blue-yonder);
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+.card h4 {
+    font-size: 2em;
+    color: var(--orange-red-crayola);
+    margin-block: 10px;
+}
+
+hr {
+    border: 2px solid var(--blue-yonder);
+    border-radius: 100px;
+}
+
+.card p {
+    margin: 20px 0 0 0;
+    color: var(--ghost-white);
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 1.3em;
+}
+
+footer {
+    text-align: center;
+    color: var(--orange-red-crayola);
+    font-size: 1.5em;
+    padding-block: 2em;
+}
+
+@media (max-width: 800px) {
+    .wide {
+        display: none;
+    }
+
+    .narrow {
+        display: block;
+    }
+}

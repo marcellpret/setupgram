@@ -1,10 +1,63 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>ImageBoard</title>
 </head>
+
 <body>
+    <div id="main">
+        <div class="wide">
+            <h1>Show<span>Me</span>Your<span>Setup</span></h1>
+            <button @click.prevent="openUploader" class="folder">📁
+                ⤵</button>
+        </div>
+        <div class="narrow">
+            <h1>S<span>M</span>Y<span>S</span></h1><button @click.prevent="openUploader" class="folder">📁
+                ⤵</button>
+        </div>
+
+
+        <h2>This SPA is dedicated to computer setups to inspire other techys to build their on space. Join this
+            collection with your own creation.</h2>
+        <div v-if='upload' id="upload">
+            <form>
+                <p>Upload your own image for this beautiful collection.</p>
+                <input v-model="username" type="text" name="username" placeholder="username" />
+                <input v-model="title" type="text" name="title" placeholder="title" />
+                <input v-model="description" type="text" name="description" placeholder="description" />
+                <input @change="fileSelectHandler" type="file" name="file" accept="image/*" />
+                <button @click.prevent="clickHandler">Join the collection</button>
+            </form>
+        </div>
+
+
+        <div id="content">
+            <div class="card" v-for="image in images">
+                <img v-bind:src=image.url v-bind:key=image.id alt="" srcset="">
+                <div>
+                    <h3><span class="material-icons">
+                            person
+                        </span>{{image.username}}</h3>
+                    <hr>
+                    <h4>{{image.title}}</h4>
+                    <hr>
+                    <p>{{image.description}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>Copyright ©ShowMeYourSetup - 2023</p>
+        </footer>
+
+    </div>
     <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
 </body>
+
 </html>
