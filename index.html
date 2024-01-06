@@ -13,44 +13,63 @@
     <div id="main">
         <div class="wide">
             <h1>Show<span>Me</span>Your<span>Setup</span></h1>
-            <button @click.prevent="openUploader" class="folder">📁
+            <button @click.prevent="toggleUploader" class="folder">📁
                 ⤵</button>
         </div>
         <div class="narrow">
-            <h1>S<span>M</span>Y<span>S</span></h1><button @click.prevent="openUploader" class="folder">📁
+            <h1>S<span>M</span>Y<span>S</span></h1><button @click.prevent="toggleUploader" class="folder">📁
                 ⤵</button>
         </div>
+        <Transition name="fade">
+            <modal v-if='modal' :id="selectedId" @close="closeModal" @change-id="openModal"></modal>
+        </Transition>
 
 
         <h2>This SPA is dedicated to computer setups to inspire other techys to build their on space. Join this
             collection with your own creation.</h2>
-        <div v-if='upload' id="upload">
-            <form>
-                <p>Upload your own image for this beautiful collection.</p>
-                <input v-model="username" type="text" name="username" placeholder="username" />
-                <input v-model="title" type="text" name="title" placeholder="title" />
-                <input v-model="description" type="text" name="description" placeholder="description" />
-                <input @change="fileSelectHandler" type="file" name="file" accept="image/*" />
-                <button @click.prevent="clickHandler">Join the collection</button>
-            </form>
-        </div>
 
+        <Transition name="fade">
+            <div v-if='upload' class="backdrop" @click.self="closeUploader"></div>
+        </Transition>
+
+
+        <Transition name="folder">
+            <div v-if='upload' id="upload">
+                <form @submit.prevent="clickHandler">
+                    <p>Upload your own image for this beautiful collection.</p>
+                    <input v-model="username" type="text" name="username" placeholder="username" />
+                    <input v-model="title" type="text" name="title" placeholder="title" />
+                    <textarea v-model="description" rows="3" name="description" placeholder="description">
+                    </textarea>
+
+                    <input type="file" name="file" accept="image/*" />
+                    <textarea v-model="newTags" rows="2" name="tags"
+                        placeholder="Add your tags separated by a comma ','">
+                    </textarea>
+                    <button type="submit">Join the collection</button>
+                </form>
+            </div>
+        </Transition>
+
+        <div id="tags">
+            <span class="tag-name" @click="filterByTag(tag)" v-for="tag in tags">{{tag}}</span>
+
+            <span class="tag-name clear" @click="clearFilterByTag">x</span>
+
+        </div>
 
         <div id="content">
-            <div class="card" v-for="image in images">
+            <div class="card" v-for="image in images" @click="openModal(image.id)">
                 <img v-bind:src=image.url v-bind:key=image.id alt="" srcset="">
                 <div>
-                    <h3><span class="material-icons">
-                            person
-                        </span>{{image.username}}</h3>
-                    <hr>
                     <h4>{{image.title}}</h4>
-                    <hr>
-                    <p>{{image.description}}</p>
                 </div>
-
+                <div class="heart">
+                    <span>♡</span>
+                </div>
             </div>
         </div>
+        <div v-if="moreButton" class="more"><button class="show-more" @click="getMoreImages">+</button></div>
 
         <footer>
             <p>Copyright ©ShowMeYourSetup - 2023</p>
